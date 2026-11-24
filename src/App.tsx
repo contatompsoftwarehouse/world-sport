@@ -1,8 +1,17 @@
+import { Header } from './components/Header/Header';
+import { Hero } from './components/Hero/Hero';
+
 function App() {
   return (
-    <main id="topo">
-      <h1>World Sport</h1>
-    </main>
+    <>
+      <a className="skip-link" href="#conteudo">
+        Pular para o conteúdo
+      </a>
+      <Header />
+      <main id="conteudo">
+        <Hero />
+      </main>
+    </>
   );
 }
 

@@ -35,3 +35,10 @@
     }
   }
 }
+
+@mixin focus-ring-on-dark {
+  &:focus-visible {
+    outline: 3px solid $color-sky-pastel;
+    outline-offset: 3px;
+  }
+}

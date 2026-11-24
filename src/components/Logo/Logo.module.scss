@@ -1,0 +1,30 @@
+@use '../../styles/tokens' as *;
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  color: $color-pure-white;
+  text-decoration: none;
+}
+
+.mark {
+  width: 28px;
+  height: 28px;
+  color: $color-sport-orange;
+}
+
+.word {
+  font-family: $font-display;
+  font-size: 1.625rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.accent {
+  margin-left: 0.25em;
+  color: $color-sport-orange;
+}

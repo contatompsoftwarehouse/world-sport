@@ -1,0 +1,74 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 28px;
+  border: 2px solid transparent;
+  border-radius: $radius-sm;
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease;
+
+  svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  @include focus-ring-on-dark;
+}
+
+.compact {
+  min-height: 48px;
+  padding: 0 20px;
+  font-size: 0.9375rem;
+}
+
+.primary {
+  background-color: $color-sport-orange;
+  color: $color-deep-navy;
+
+  &:hover {
+    background-color: $color-sport-orange-light;
+  }
+
+  &:active {
+    background-color: $color-sport-orange-hover;
+  }
+}
+
+.secondary {
+  border-color: rgba($color-pure-white, 0.5);
+  background-color: transparent;
+  color: $color-pure-white;
+
+  &:hover {
+    border-color: $color-pure-white;
+    background-color: $color-pure-white;
+    color: $color-deep-navy;
+  }
+
+  &:active {
+    background-color: $color-sky-pastel;
+    border-color: $color-sky-pastel;
+    color: $color-deep-navy;
+  }
+}

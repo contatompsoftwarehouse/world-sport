@@ -1,0 +1,212 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: var(--hero-pad);
+  right: var(--hero-pad);
+  left: var(--hero-pad);
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
+  transition:
+    top 0.25s ease,
+    right 0.25s ease,
+    left 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.scrolled {
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: $color-deep-navy;
+  border-bottom-color: rgba($color-pure-white, 0.1);
+}
+
+.inner {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: none;
+  height: $header-height-mobile;
+
+  @include respond-to(md) {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+
+  @include respond-to(lg) {
+    height: $header-height-desktop;
+    padding-right: 56px;
+    padding-left: 56px;
+  }
+}
+
+.nav {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  padding: 8px 20px 24px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  background-color: $color-deep-navy;
+  border-radius: 0 0 $radius-md $radius-md;
+  box-shadow: $shadow-elevated;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0s linear 0.2s;
+
+  @include respond-to(md) {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  @include respond-to(lg) {
+    position: static;
+    flex: 1;
+    padding: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    transition: none;
+  }
+}
+
+.navOpen {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+  }
+}
+
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  border-bottom: 1px solid rgba($color-pure-white, 0.1);
+  color: rgba($color-pure-white, 0.9);
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.18s ease;
+
+  &:hover {
+    color: $color-pure-white;
+  }
+
+  &:active {
+    color: $color-sport-orange;
+  }
+
+  @include focus-ring-on-dark;
+
+  @include respond-to(lg) {
+    min-height: 48px;
+    padding: 0 14px;
+    border: 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      bottom: 8px;
+      left: 14px;
+      height: 2px;
+      background-color: $color-sport-orange;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.panelCta {
+  margin-top: 24px;
+
+  a {
+    width: 100%;
+  }
+
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.headerCta {
+  display: none;
+
+  @include respond-to(md) {
+    display: block;
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid rgba($color-pure-white, 0.35);
+  border-radius: $radius-sm;
+  background: transparent;
+  color: $color-pure-white;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    border-color: $color-pure-white;
+    background-color: rgba($color-pure-white, 0.08);
+  }
+
+  &:active {
+    background-color: rgba($color-pure-white, 0.16);
+  }
+
+  @include focus-ring-on-dark;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
