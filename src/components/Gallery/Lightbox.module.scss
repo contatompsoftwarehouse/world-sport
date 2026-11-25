@@ -1,0 +1,153 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog {
+  --focus-ring: #{$color-sky-pastel};
+
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background-color: $color-navy-dark;
+  color: $color-pure-white;
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    animation: fade 0.25s ease;
+  }
+
+  &::backdrop {
+    background-color: transparent;
+  }
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  padding-inline: 16px;
+
+  @include respond-to(md) {
+    padding-inline: 32px;
+  }
+}
+
+.image {
+  max-width: 100%;
+  max-height: 74dvh;
+  border-radius: $radius-sm;
+  object-fit: contain;
+  animation: fade 0.3s ease;
+
+  @include respond-to(md) {
+    max-width: min(1100px, calc(100vw - 220px));
+  }
+}
+
+.button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1.5px solid rgba($color-pure-white, 0.4);
+  border-radius: $radius-sm;
+  background-color: transparent;
+  color: $color-pure-white;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  &:hover {
+    border-color: $color-pure-white;
+    background-color: $color-pure-white;
+    color: $color-deep-navy;
+  }
+
+  @include focus-ring-on-dark;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  @include respond-to(md) {
+    top: 28px;
+    right: 28px;
+  }
+}
+
+.previous,
+.next {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    position: absolute;
+    bottom: 24px;
+  }
+}
+
+.previous {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    left: 16px;
+  }
+}
+
+.next {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    right: 16px;
+  }
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  max-width: 32rem;
+  padding-inline: 16px;
+  color: rgba($color-pure-white, 0.85);
+  font-size: 0.9375rem;
+  text-align: center;
+}
+
+.count {
+  color: $color-pure-white;
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open],
+  .image,
+  .button {
+    animation: none;
+    transition: none;
+  }
+}

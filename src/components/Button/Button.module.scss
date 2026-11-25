@@ -72,3 +72,34 @@
     color: $color-deep-navy;
   }
 }
+
+.dark {
+  background-color: $color-deep-navy;
+  color: $color-pure-white;
+
+  &:hover {
+    background-color: $color-navy-dark;
+  }
+
+  &:active {
+    background-color: #0a1528;
+  }
+}
+
+.outline {
+  border-color: rgba($color-deep-navy, 0.35);
+  background-color: transparent;
+  color: $color-deep-navy;
+
+  &:hover {
+    border-color: $color-deep-navy;
+    background-color: $color-deep-navy;
+    color: $color-pure-white;
+  }
+
+  &:active {
+    border-color: $color-navy-dark;
+    background-color: $color-navy-dark;
+    color: $color-pure-white;
+  }
+}

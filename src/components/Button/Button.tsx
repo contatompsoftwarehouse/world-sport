@@ -3,7 +3,7 @@ import styles from './Button.module.scss';
 
 type ButtonProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'className'> & {
   href: string;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'dark' | 'outline';
   icon?: ReactNode;
   external?: boolean;
   compact?: boolean;

@@ -1,0 +1,104 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 88px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba($color-deep-navy, 0.14);
+  color: $color-deep-navy;
+  text-decoration: none;
+  transition: padding 0.25s ease;
+
+  @include focus-ring-on-dark;
+
+  @media (hover: hover) {
+    &:hover {
+      padding-inline: 12px;
+    }
+
+    &:hover .arrow {
+      color: $color-deep-navy;
+      transform: translate(2px, -2px);
+    }
+
+    &:hover .icon {
+      background-color: $color-sport-orange;
+      color: $color-deep-navy;
+    }
+  }
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: $radius-sm;
+  background-color: $color-deep-navy;
+  color: $color-pure-white;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.label {
+  color: rgba($color-deep-navy, 0.7);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.value {
+  margin-top: 2px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+
+  @include respond-to(md) {
+    font-size: 1.125rem;
+  }
+}
+
+.detail {
+  margin-top: 2px;
+  color: rgba($color-deep-navy, 0.72);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.arrow {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: rgba($color-deep-navy, 0.45);
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .icon,
+  .arrow {
+    transition: none;
+  }
+}

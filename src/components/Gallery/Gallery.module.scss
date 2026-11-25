@@ -1,0 +1,26 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  --focus-ring: #{$color-deep-navy};
+  --title-max: 20ch;
+
+  padding-top: 72px;
+  padding-bottom: 80px;
+  overflow-x: clip;
+  background-color: $color-soft-gray;
+  color: $color-deep-navy;
+
+  @include respond-to(lg) {
+    padding-top: 112px;
+    padding-bottom: 120px;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.highlight {
+  @include highlight-underline;
+}

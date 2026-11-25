@@ -53,3 +53,10 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
+
+@mixin highlight-underline {
+  padding-bottom: 0.04em;
+  background: linear-gradient($color-sport-orange, $color-sport-orange) 0 96% / 100% 0.14em no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
