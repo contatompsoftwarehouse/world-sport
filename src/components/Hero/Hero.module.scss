@@ -94,15 +94,8 @@
 }
 
 .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  @include eyebrow;
   margin-bottom: 16px;
-  color: $color-sport-orange;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
 
   &::before,
   &::after {

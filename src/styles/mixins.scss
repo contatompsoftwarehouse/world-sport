@@ -38,7 +38,18 @@
 
 @mixin focus-ring-on-dark {
   &:focus-visible {
-    outline: 3px solid $color-sky-pastel;
+    outline: 3px solid var(--focus-ring, #{$color-sky-pastel});
     outline-offset: 3px;
   }
+}
+
+@mixin eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: $color-sport-orange;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }

@@ -1,0 +1,83 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.heading {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(0, 1fr);
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-areas:
+      'eyebrow eyebrow'
+      'title side';
+    column-gap: 64px;
+    row-gap: 24px;
+  }
+}
+
+.eyebrow {
+  @include eyebrow;
+
+  &::before {
+    content: '';
+    width: 32px;
+    height: 2px;
+    background-color: currentColor;
+  }
+
+  @include respond-to(lg) {
+    grid-area: eyebrow;
+  }
+}
+
+.title {
+  font-size: clamp(3rem, 11vw, 4.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-wrap: balance;
+
+  @include respond-to(lg) {
+    grid-area: title;
+    max-width: 14ch;
+    font-size: clamp(4rem, 6vw, 5.5rem);
+  }
+}
+
+.side {
+  @include respond-to(lg) {
+    grid-area: side;
+    align-self: end;
+  }
+}
+
+.description {
+  max-width: 32rem;
+  color: rgba($color-pure-white, 0.82);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+
+  @include respond-to(lg) {
+    font-size: 1.125rem;
+  }
+}
+
+.action {
+  margin-top: 24px;
+}
+
+.light {
+  .eyebrow {
+    color: $color-deep-navy;
+
+    &::before {
+      background-color: $color-sport-orange;
+    }
+  }
+
+  .description {
+    color: rgba($color-deep-navy, 0.78);
+  }
+}

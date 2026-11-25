@@ -1,0 +1,149 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.carousel {
+  --slide-w: min(86vw, 880px);
+
+  margin-top: 40px;
+
+  @include respond-to(lg) {
+    margin-top: 64px;
+  }
+}
+
+.track {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-block: 8px;
+  padding-inline: calc((100% - var(--slide-w)) / 2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-deep-navy;
+    outline-offset: -3px;
+  }
+
+  @include respond-to(lg) {
+    gap: 24px;
+  }
+}
+
+.controls {
+  @include container;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.segments {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  max-width: 360px;
+}
+
+.segment {
+  position: relative;
+  flex: 1;
+  height: 24px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 2px;
+    background-color: rgba($color-deep-navy, 0.2);
+    transition: background-color 0.25s ease;
+  }
+
+  &:hover::before {
+    background-color: rgba($color-deep-navy, 0.45);
+  }
+
+  &[aria-current='true']::before {
+    background-color: $color-deep-navy;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-deep-navy;
+    outline-offset: 2px;
+  }
+}
+
+.counter {
+  margin-left: auto;
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1.5px solid rgba($color-deep-navy, 0.3);
+  border-radius: $radius-sm;
+  background-color: $color-pure-white;
+  color: $color-deep-navy;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.12s ease;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (hover: hover) {
+    &:hover:not([aria-disabled='true']) {
+      border-color: $color-deep-navy;
+      background-color: $color-deep-navy;
+      color: $color-pure-white;
+    }
+  }
+
+  &:active:not([aria-disabled='true']) {
+    border-color: $color-deep-navy;
+    background-color: $color-deep-navy;
+    color: $color-pure-white;
+    transform: translateY(1px);
+  }
+
+  &[aria-disabled='true'] {
+    border-color: rgba($color-deep-navy, 0.15);
+    background-color: transparent;
+    color: rgba($color-deep-navy, 0.4);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @include focus-ring-on-dark;
+}

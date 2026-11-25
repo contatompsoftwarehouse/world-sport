@@ -1,3 +1,4 @@
+import { Courts } from './components/Courts/Courts';
 import { Header } from './components/Header/Header';
 import { Hero } from './components/Hero/Hero';
 
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <main id="conteudo">
         <Hero />
+        <Courts />
       </main>
     </>
   );
