@@ -4,6 +4,8 @@
 
 .carousel {
   --slide-w: min(78vw, 1040px);
+  --edge: calc(max(0px, (100% - 1200px) / 2) + var(--gutter));
+
   width: 100%;
 }
 
@@ -11,10 +13,11 @@
   display: flex;
   gap: 20px;
   padding-block: 12px 20px;
-  padding-inline: calc((100% - var(--slide-w)) / 2);
+  padding-inline: var(--edge);
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--edge);
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
@@ -32,12 +35,14 @@
 
   @media (max-width: 767px) {
     --slide-w: 88vw;
+
     gap: 14px;
   }
 }
 
 .controls {
   @include container;
+
   display: flex;
   align-items: center;
   justify-content: space-between;

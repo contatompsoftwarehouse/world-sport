@@ -60,3 +60,9 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+
+@mixin section-edge {
+  position: relative;
+  margin-top: calc(var(--section-edge) * -1);
+  border-radius: 50% 50% 0 0 / var(--section-edge) var(--section-edge) 0 0;
+}

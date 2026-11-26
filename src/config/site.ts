@@ -100,7 +100,6 @@ export const structureContent = {
 };
 
 export const courtsContent = {
-  eyebrow: 'Nossa estrutura',
   titleStart: 'Encontre a',
   titleHighlight: 'quadra ideal',
   titleEnd: 'para seu jogo.',

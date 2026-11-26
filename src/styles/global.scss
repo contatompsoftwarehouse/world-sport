@@ -12,10 +12,18 @@
   --font-body: #{$font-body};
   --header-height: #{$header-height-mobile};
   --hero-pad: 12px;
+  --section-edge: 28px;
+  --gutter: 20px;
+
+  @media (min-width: $breakpoint-md) {
+    --section-edge: 48px;
+    --gutter: 32px;
+  }
 
   @media (min-width: $breakpoint-lg) {
     --header-height: #{$header-height-desktop};
     --hero-pad: 16px;
+    --section-edge: 72px;
   }
 }
 

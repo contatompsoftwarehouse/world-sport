@@ -1,14 +1,18 @@
+
 @use '../../styles/tokens' as *;
 @use '../../styles/mixins' as *;
 
 .footer {
-  padding-top: 72px;
+  @include section-edge;
+
+  padding-top: calc(72px + var(--section-edge));
+
   overflow: hidden;
   background-color: $color-navy-dark;
   color: $color-pure-white;
 
   @include respond-to(lg) {
-    padding-top: 96px;
+    padding-top: calc(96px + var(--section-edge));
   }
 }
 
@@ -94,6 +98,7 @@
 }
 
 .wordmark {
+  position: relative;
   margin-top: 56px;
   margin-bottom: 8px;
   color: rgba($color-pure-white, 0.06);
@@ -106,6 +111,10 @@
   text-transform: uppercase;
   white-space: nowrap;
   user-select: none;
+
+  &::before {
+    content: attr(data-text);
+  }
 }
 
 .bottom {

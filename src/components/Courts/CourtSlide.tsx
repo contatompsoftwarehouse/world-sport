@@ -1,8 +1,13 @@
+
 import type { KeyboardEvent } from 'react';
+
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
+
 import { Button } from '../Button/Button';
+
 import { unsplashSrc, unsplashSrcSet } from '../../config/images';
 import { buildWhatsappUrl, type Court } from '../../config/site';
+
 import styles from './CourtSlide.module.scss';
 
 const PHOTO_WIDTHS = [640, 960, 1280, 1600] as const;
@@ -30,7 +35,7 @@ export function CourtSlide({
 
   const message = `Olá! Gostaria de consultar a disponibilidade da quadra de ${court.name}.`;
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (active) return;
 
     if (event.key === 'Enter' || event.key === ' ') {
@@ -42,12 +47,11 @@ export function CourtSlide({
   const toneClass = styles[court.tone] ?? styles.featureDefault;
 
   return (
-    <article
+    <div
       className={`${styles.slide} ${active ? styles.active : ''}`}
       role="group"
       aria-roledescription="slide"
       aria-label={`${index + 1} de ${total}: ${court.name}`}
-      aria-current={active ? 'true' : undefined}
       tabIndex={active ? -1 : 0}
       onClick={!active ? onSelect : undefined}
       onKeyDown={handleKeyDown}
@@ -131,6 +135,6 @@ export function CourtSlide({
           Explorar quadra
         </span>
       )}
-    </article>
+    </div>
   );
 }

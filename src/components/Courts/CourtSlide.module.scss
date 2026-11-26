@@ -16,7 +16,7 @@
   background-color: $color-deep-navy;
   color: $color-pure-white;
   cursor: pointer;
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   scroll-snap-stop: always;
   transform: scale(0.95);
   transition:

@@ -1,7 +1,17 @@
+
 @use '../../styles/tokens' as *;
 @use '../../styles/mixins' as *;
 
 .header {
+  --hdr-fg: #{$color-pure-white};
+  --hdr-fg-soft: #{rgba($color-pure-white, 0.9)};
+  --hdr-line: #{rgba($color-pure-white, 0.1)};
+  --hdr-toggle-line: #{rgba($color-pure-white, 0.35)};
+  --hdr-hover-bg: #{rgba($color-pure-white, 0.08)};
+  --hdr-panel: #{$color-deep-navy};
+  --logo-color: #{$color-pure-white};
+  --logo-accent: #{$color-sport-orange};
+
   position: fixed;
   top: var(--hero-pad);
   right: var(--hero-pad);
@@ -10,29 +20,64 @@
   border-bottom: 1px solid transparent;
   background-color: transparent;
   transition:
-    top 0.25s ease,
-    right 0.25s ease,
-    left 0.25s ease,
-    background-color 0.25s ease,
-    border-color 0.25s ease;
+    top 0.3s ease,
+    right 0.3s ease,
+    left 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.scrolled {
-  top: 0;
-  right: 0;
-  left: 0;
-  background-color: $color-deep-navy;
-  border-bottom-color: rgba($color-pure-white, 0.1);
+.floating {
+  --hdr-fg: #{$color-deep-navy};
+  --hdr-fg-soft: #{$color-deep-navy};
+  --hdr-line: #{rgba($color-deep-navy, 0.1)};
+  --hdr-toggle-line: #{rgba($color-deep-navy, 0.3)};
+  --hdr-hover-bg: #{rgba($color-deep-navy, 0.06)};
+  --hdr-panel: #{$color-pure-white};
+  --focus-ring: #{$color-deep-navy};
+  --logo-color: #{$color-deep-navy};
+  --logo-accent: #{$color-sport-orange-hover};
+
+  top: 12px;
+  right: max(
+    12px,
+    calc((100vw - #{$container-max-width}) / 2 + var(--gutter) - 8px)
+  );
+  left: max(
+    12px,
+    calc((100vw - #{$container-max-width}) / 2 + var(--gutter) - 8px)
+  );
+  border-radius: $radius-pill;
+  background-color: $color-pure-white;
+  box-shadow:
+    0 10px 30px rgba($color-deep-navy, 0.16),
+    0 0 0 1px rgba($color-deep-navy, 0.06);
+
+  @include respond-to(md) {
+    right: max(
+      12px,
+      calc((100vw - #{$container-max-width}) / 2 + var(--gutter) - 20px)
+    );
+    left: max(
+      12px,
+      calc((100vw - #{$container-max-width}) / 2 + var(--gutter) - 20px)
+    );
+  }
 }
 
 .inner {
   @include container;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   max-width: none;
   height: $header-height-mobile;
+
+  transition:
+    height 0.3s ease,
+    padding 0.3s ease;
 
   @include respond-to(md) {
     padding-right: 40px;
@@ -43,6 +88,21 @@
     height: $header-height-desktop;
     padding-right: 56px;
     padding-left: 56px;
+  }
+
+  .floating & {
+    height: 64px;
+    padding-right: 8px;
+    padding-left: 8px;
+
+    @include respond-to(md) {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    @include respond-to(lg) {
+      height: 68px;
+    }
   }
 }
 
@@ -55,7 +115,7 @@
   visibility: hidden;
   opacity: 0;
   transform: translateY(-8px);
-  background-color: $color-deep-navy;
+  background-color: var(--hdr-panel);
   border-radius: 0 0 $radius-md $radius-md;
   box-shadow: $shadow-elevated;
   transition:
@@ -83,6 +143,20 @@
   }
 }
 
+.floating .nav {
+  top: calc(100% + 8px);
+  border-radius: $radius-lg;
+  box-shadow:
+    0 16px 40px rgba($color-deep-navy, 0.2),
+    0 0 0 1px rgba($color-deep-navy, 0.06);
+
+  @include respond-to(lg) {
+    top: auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
 .navOpen {
   visibility: visible;
   opacity: 1;
@@ -106,19 +180,19 @@
   display: flex;
   align-items: center;
   min-height: 56px;
-  border-bottom: 1px solid rgba($color-pure-white, 0.1);
-  color: rgba($color-pure-white, 0.9);
+  border-bottom: 1px solid var(--hdr-line);
+  color: var(--hdr-fg-soft);
   font-size: 1.125rem;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.18s ease;
 
   &:hover {
-    color: $color-pure-white;
+    color: var(--hdr-fg);
   }
 
   &:active {
-    color: $color-sport-orange;
+    color: $color-sport-orange-hover;
   }
 
   @include focus-ring-on-dark;
@@ -181,10 +255,10 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border: 1.5px solid rgba($color-pure-white, 0.35);
+  border: 1.5px solid var(--hdr-toggle-line);
   border-radius: $radius-sm;
   background: transparent;
-  color: $color-pure-white;
+  color: var(--hdr-fg);
   cursor: pointer;
   transition:
     background-color 0.18s ease,
@@ -196,17 +270,28 @@
   }
 
   &:hover {
-    border-color: $color-pure-white;
-    background-color: rgba($color-pure-white, 0.08);
+    border-color: var(--hdr-fg);
+    background-color: var(--hdr-hover-bg);
   }
 
   &:active {
-    background-color: rgba($color-pure-white, 0.16);
+    background-color: rgba($color-deep-navy, 0.12);
   }
 
   @include focus-ring-on-dark;
 
   @include respond-to(lg) {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .inner,
+  .nav,
+  .link,
+  .link::after,
+  .toggle {
+    transition: none;
   }
 }

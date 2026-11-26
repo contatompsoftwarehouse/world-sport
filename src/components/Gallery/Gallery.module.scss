@@ -1,3 +1,4 @@
+
 @use '../../styles/tokens' as *;
 @use '../../styles/mixins' as *;
 
@@ -5,15 +6,18 @@
   --focus-ring: #{$color-deep-navy};
   --title-max: 20ch;
 
-  padding-top: 72px;
-  padding-bottom: 80px;
+  @include section-edge;
+
+  padding-top: calc(72px + var(--section-edge));
+  padding-bottom: calc(80px + var(--section-edge));
+
   overflow-x: clip;
   background-color: $color-soft-gray;
   color: $color-deep-navy;
 
   @include respond-to(lg) {
-    padding-top: 112px;
-    padding-bottom: 120px;
+    padding-top: calc(112px + var(--section-edge));
+    padding-bottom: calc(120px + var(--section-edge));
   }
 }
 

@@ -1,3 +1,4 @@
+
 @use '../../styles/tokens' as *;
 @use '../../styles/mixins' as *;
 
@@ -6,6 +7,7 @@
     opacity: 0;
     transform: translateY(32px);
   }
+
   to {
     opacity: 1;
     transform: none;
@@ -13,14 +15,17 @@
 }
 
 .section {
-  padding-top: 72px;
-  padding-bottom: 80px;
+  @include section-edge;
+
+  padding-top: calc(72px + var(--section-edge));
+  padding-bottom: calc(80px + var(--section-edge));
+
   background-color: $color-deep-navy;
   color: $color-pure-white;
 
   @include respond-to(lg) {
-    padding-top: 112px;
-    padding-bottom: 120px;
+    padding-top: calc(112px + var(--section-edge));
+    padding-bottom: calc(120px + var(--section-edge));
   }
 }
 
